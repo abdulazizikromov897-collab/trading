@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROPER TRADING ACADEMY | Ro'yxatdan O'tish & Ta'lim Platformasi</title>
+  <!-- Google Fonts: Syne & Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+
+  <!-- Dynamic Animated Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="brand-logo" onclick="navigateTo('home')">
+        <div class="logo-icon">
+          <i class="fa-solid fa-chart-line-up"></i>
+          <span class="logo-pulse"></span>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">PROPER<span class="accent-text">TRADING</span></span>
+          <span class="brand-tag">ACADEMY & FUNDED ACC</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#about" class="nav-link"><i class="fa-solid fa-graduation-cap"></i> Kurs Haqida</a>
+        <a href="#features" class="nav-link"><i class="fa-solid fa-gem"></i> Imkoniyatlar</a>
+        <a href="#stats" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Natijalar</a>
+        <a href="#register-section" class="nav-link"><i class="fa-solid fa-user-plus"></i> Ro'yxatdan O'tish</a>
+        <a href="javascript:void(0)" class="nav-link dashboard-nav-btn" onclick="openDashboardModal()"><i class="fa-solid fa-desktop"></i> Kabinet</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Sound Effect Toggle -->
+        <button id="sound-toggle" class="control-btn" title="Ovozni yoqish / o'chirish" aria-label="Toggle Sound">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+
+        <!-- Dark / Light Mode Toggle Button -->
+        <button id="theme-toggle" class="theme-switch" title="Tun / Kun rejimini o'zgartirish" aria-label="Toggle Dark/Light Mode">
+          <div class="switch-handle">
+            <i class="fa-solid fa-moon moon-icon"></i>
+            <i class="fa-solid fa-sun sun-icon"></i>
+          </div>
+        </button>
+
+        <!-- Quick Register Button -->
+        <button class="glow-btn header-reg-btn" onclick="scrollToRegister()">
+          <span>Ro'yxatdan O'tish</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper" id="main-content">
+    
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="hero-glow hero-glow-1"></div>
+      <div class="hero-glow hero-glow-2"></div>
+      
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-badge animate-badge">
+            <span class="badge-dot"></span>
+            <span>2026/2027 EKSKLYUZIV PROPER TRADING MAKTABI</span>
+            <span class="badge-shine"></span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="text-white">PROPER KURSI BILAN</span>
+            <br>
+            <span class="gradient-text type-text" id="typewriter-text"></span>
+          </h1>
+
+          <p class="hero-description">
+            Moliyaviy erkinlik sari eng to'g'ri qadam! Prop firmalarning <strong>$10,000 dan $200,000 gacha</strong> bo'lgan hisoblarini kafolatlangan risk-menejment va professional strategiyalar bilan qo'lga kiriting.
+          </p>
+
+          <div class="hero-cta-group">
+            <button class="btn btn-primary" onclick="scrollToRegister()">
+              <i class="fa-solid fa-bolt-lightning"></i>
+              <span>Hoziroq Ro'yxatdan O'ting</span>
+              <div class="btn-shine"></div>
+            </button>
+            <button class="btn btn-secondary" onclick="openTrailerModal()">
+              <i class="fa-solid fa-circle-play"></i>
+              <span>Kurs Treyleri (Video)</span>
+            </button>
+          </div>
+
+          <!-- Hero live statistics -->
+          <div class="hero-stats-row">
+            <div class="hero-stat-card">
+              <span class="stat-number" data-target="2450">0</span>+
+              <span class="stat-label">Muvaffaqiyatli Bitiruvchilar</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="hero-stat-card">
+              $<span class="stat-number" data-target="8.4">0</span>M+
+              <span class="stat-label">Olingan Funded Kapital</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="hero-stat-card">
+              <span class="stat-number" data-target="96">0</span>%
+              <span class="stat-label">Ijobiy Natijalar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="visual-card-3d" id="tilt-card">
+            <div class="card-glass-layer">
+              <div class="card-header-bar">
+                <div class="card-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <div class="card-status-badge">
+                  <span class="live-indicator"></span> LIVE TRADING & CHALLENGE
+                </div>
+              </div>
+
+              <!-- Interactive mini chart preview -->
+              <div class="interactive-chart-preview">
+                <div class="chart-stats-header">
+                  <div>
+                    <span class="asset-title">EUR/USD & BTC/USDT PROPER</span>
+                    <h3 class="asset-profit">+ $14,850.00 <span class="profit-percent">(+24.8%)</span></h3>
+                  </div>
+                  <span class="funded-tag"><i class="fa-solid fa-circle-check"></i> FUNDED PASS</span>
+                </div>
+                
+                <div class="chart-wave-container">
+                  <svg class="chart-svg" viewBox="0 0 500 180" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.4"/>
+                        <stop offset="100%" stop-color="#4facfe" stop-opacity="0.0"/>
+                      </linearGradient>
+                    </defs>
+                    <path class="chart-line-bg" d="M0,130 C70,120 120,150 180,80 C240,20 300,100 370,50 C430,10 470,40 500,20 L500,180 L0,180 Z" fill="url(#chartGradient)"></path>
+                    <path class="chart-line-main" d="M0,130 C70,120 120,150 180,80 C240,20 300,100 370,50 C430,10 470,40 500,20" fill="none" stroke="#00f2fe" stroke-width="4"></path>
+                  </svg>
+                  <div class="chart-beacon" style="top: 20px; right: 0;"></div>
+                </div>
+
+                <div class="mini-orders-list">
+                  <div class="order-pill buy">
+                    <span class="op-type">BUY LIMIT</span>
+                    <span class="op-pair">XAU/USD</span>
+                    <span class="op-pnl">+$3,420.00</span>
+                  </div>
+                  <div class="order-pill win">
+                    <span class="op-type">CHALLENGE</span>
+                    <span class="op-pair">PHASE 2 PASSED</span>
+                    <span class="op-pnl">$100,000 ACC</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating holographic badge -->
+              <div class="floating-badge badge-top-right">
+                <i class="fa-solid fa-trophy text-gold"></i>
+                <div>
+                  <strong>TOP TREYDER</strong>
+                  <span>99.2% Profit Target</span>
+                </div>
+              </div>
+
+              <div class="floating-badge badge-bottom-left">
+                <i class="fa-solid fa-shield-halved text-cyan"></i>
+                <div>
+                  <strong>NO RISK LOSS</strong>
+                  <span>Proper Risk-Reward 1:3+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kurs Haqida (About) Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-fire"></i> EKSKLYUZIV DASTUR</div>
+          <h2 class="section-title">Proper Kursi Nimalarni O'z Ichiga Oladi?</h2>
+          <p class="section-subtitle">Bu shunchaki oddiy darslik emas — bu haqiqiy proprietary firmalardan yirik sarmoyalarni jalb qilish bo'yicha to'liq tizim.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card tilt-item">
+            <div class="feature-icon bg-cyan">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <h3>Smart Money Concepts (SMC)</h3>
+            <p>Bozor yirik ishtirokchilari (Market Makerlar, banklar) harakatini o'qish, likvidlik zonalari va order bloklar bilan ishlash.</p>
+            <div class="card-glow"></div>
+          </div>
+
+          <div class="feature-card tilt-item">
+            <div class="feature-icon bg-purple">
+              <i class="fa-solid fa-shield-heart"></i>
+            </div>
+            <h3>Prop Challenge Strategiyalari</h3>
+            <p>FTMO, FundedNext, MFF kabi prop kompaniyalarning 1-chi va 2-bosqich qoidalarini minimal risk bilan 100% yengib o'tish usullari.</p>
+            <div class="card-glow"></div>
+          </div>
+
+          <div class="feature-card tilt-item">
+            <div class="feature-icon bg-green">
+              <i class="fa-solid fa-chart-candlestick"></i>
+            </div>
+            <h3>Amaliy Live Trading</h3>
+            <p>Haftasiga 3 marta jonli efirda mentorlar bilan birgalikda NFP, FOMC va Nyu-York sessiyalarida real savdo qilish.</p>
+            <div class="card-glow"></div>
+          </div>
+
+          <div class="feature-card tilt-item">
+            <div class="feature-icon bg-orange">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <h3>Sertifikat & Funded Hisob</h3>
+            <p>Kurs yakunida rasmiy Proper Academy sertifikati va eng a'lochi o'quvchilarga bepul $10,000 prop challenge taqdim etiladi.</p>
+            <div class="card-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Media Showcase (Video & Rasm ko'rinishi) -->
+    <section class="section showcase-section" id="features">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag"><i class="fa-solid fa-film"></i> MULTIMEDIA & GALEREYA</div>
+          <h2 class="section-title">Kursning O'ziga Xos Videolari va Jonli Jarayon</h2>
+          <p class="section-subtitle">Platforma ichida har bir dars yuqori sifatli 4K video, interaktiv grafiklar va maxsus materiallar bilan boyitilgan.</p>
+        </div>
+
+        <div class="showcase-container">
+          <!-- Main Interactive Video Preview Card -->
+          <div class="video-showcase-box">
+            <div class="video-preview-wrapper" id="main-video-preview">
+              <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80" alt="Trading Analysis Preview" class="video-cover-img" id="cover-image">
+              <div class="video-overlay">
+                <button class="pulse-play-btn" onclick="openTrailerModal()" aria-label="Play Trailer">
+                  <i class="fa-solid fa-play"></i>
+                  <span class="play-ripple"></span>
+                </button>
+                <div class="video-caption">
+                  <span class="video-chip"><i class="fa-solid fa-sparkles"></i> 4K ULTRA HD TAQDIMOT</span>
+                  <h3>Proper Kursi Kirish & Treyleri: 0 dan $100,000 Gacha Yo'l</h3>
+                  <p>1-Dars: Bozor psixologiyasi va Proper hisoblarning afzalliklari</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mini Thumbnails Carousel -->
+            <div class="video-thumbs-carousel">
+              <div class="thumb-item active" onclick="switchVideoPreview(0)">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=300&q=80" alt="Thumb 1">
+                <span>1. Kirish Treyleri</span>
+              </div>
+              <div class="thumb-item" onclick="switchVideoPreview(1)">
+                <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=300&q=80" alt="Thumb 2">
+                <span>2. Jonli NFP Savdosi</span>
+              </div>
+              <div class="thumb-item" onclick="switchVideoPreview(2)">
+                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=300&q=80" alt="Thumb 3">
+                <span>3. Risk & Drawdown</span>
+              </div>
+              <div class="thumb-item" onclick="switchVideoPreview(3)">
+                <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?auto=format&fit=crop&w=300&q=80" alt="Thumb 4">
+                <span>4. Funded Yechib Olish</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ro'yxatdan O'tish Bo'limi (Registration Section) -->
+    <section class="section register-section" id="register-section">
+      <div class="container">
+        <div class="register-grid">
+          
+          <!-- Chap taraf: Ma'lumot va afzalliklar -->
+          <div class="reg-info-column">
+            <div class="section-tag"><i class="fa-solid fa-id-card"></i> KURSGA QABUL OCHIQ</div>
+            <h2 class="reg-main-heading">
+              Proper Kursida O'z O'rningizni <span class="gradient-text">Band Qiling!</span>
+            </h2>
+            <p class="reg-desc">
+              Ro'yxatdan o'tgandan so'ng sizga shaxsiy talaba kabineti ochiladi, darslar, maxsus video materiallar va yopiq VIP treyderlar guruhiga to'liq kirish imkoni beriladi.
+            </p>
+
+            <div class="reg-perks-list">
+              <div class="perk-item">
+                <div class="perk-icon"><i class="fa-solid fa-check-double"></i></div>
+                <div>
+                  <h4>Tezkor Google yoki Email orqali tasdiqlash</h4>
+                  <p>Xavfsiz va bir zumda faollashadigan shaxsiy akkaunt.</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <div class="perk-icon"><i class="fa-solid fa-key"></i></div>
+                <div>
+                  <h4>SMS / Email Tasdiqlash Kodi</h4>
+                  <p>Profilingizni himoya qilish uchun ikki bosqichli xavfsizlik.</p>
+                </div>
+              </div>
+              <div class="perk-item">
+                <div class="perk-icon"><i class="fa-solid fa-headset"></i></div>
+                <div>
+                  <h4>24/7 Shaxsiy Kurator Yordami</h4>
+                  <p>Har bir qadamda savollaringizga professional javob beriladi.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pre-filled note -->
+            <div class="user-preset-banner">
+              <i class="fa-solid fa-circle-user"></i>
+              <div>
+                <strong>Foydalanuvchi ma'lumotlari tayyorlandi:</strong>
+                <span>Ism: <b>ABDULAZIZ IKROMOV</b> | Email: <b>abdulazizikromov897@gmail.com</b></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- O'ng taraf: Ro'yxatdan o'tish shakli (Form) -->
+          <div class="reg-form-column">
+            <div class="form-glass-card" id="reg-card">
+              
+              <div class="form-header">
+                <h3>Ro'yxatdan O'tish Formasi</h3>
+                <p>Quyidagi ma'lumotlarni tekshiring va tasdiqlang</p>
+              </div>
+
+              <!-- Google One-Tap / OAuth Quick Sign-in Button -->
+              <div class="oauth-section">
+                <button type="button" class="google-auth-btn" id="google-auth-trigger" onclick="triggerGoogleAuth()">
+                  <svg class="google-svg" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                  <div class="google-auth-text">
+                    <span class="primary-text">Google Akkaunt Orqali Kirish</span>
+                    <span class="sub-text">abdulazizikromov897@gmail.com</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </button>
+              </div>
+
+              <div class="divider-or">
+                <span>YOKI MA'LUMOTLAR BILAN TO'LDIRISH</span>
+              </div>
+
+              <!-- Asosiy Forma -->
+              <form id="proper-registration-form" onsubmit="handleRegistrationSubmit(event)">
+                
+                <!-- Ism maydoni (Foydalanuvchi talabiga asosan: ABDULAZIZ IKROMOV) -->
+                <div class="form-group">
+                  <label for="full-name"><i class="fa-solid fa-user"></i> To'liq Ism Sharifingiz</label>
+                  <div class="input-wrapper">
+                    <input 
+                      type="text" 
+                      id="full-name" 
+                      name="fullName" 
+                      value="ABDULAZIZ IKROMOV" 
+                      placeholder="Masalan: ABDULAZIZ IKROMOV" 
+                      required
+                    >
+                    <span class="input-badge-verified" title="To'g'ri ism"><i class="fa-solid fa-circle-check"></i></span>
+                  </div>
+                </div>
+
+                <!-- Email maydoni (Foydalanuvchi talabiga asosan: abdulazizikromov897@gmail.com) -->
+                <div class="form-group">
+                  <label for="email-address"><i class="fa-solid fa-envelope"></i> Google / Elektron Pochta</label>
+                  <div class="input-wrapper">
+                    <input 
+                      type="email" 
+                      id="email-address" 
+                      name="emailAddress" 
+                      value="abdulazizikromov897@gmail.com" 
+                      placeholder="abdulazizikromov897@gmail.com" 
+                      required
+                    >
+                    <span class="input-badge-verified" title="Email kiritildi"><i class="fa-solid fa-envelope-circle-check"></i></span>
+                  </div>
+                </div>
+
+                <!-- Telefon raqam -->
+                <div class="form-group">
+                  <label for="phone-number"><i class="fa-solid fa-phone"></i> Telefon Raqam (Telegram uchun)</label>
+                  <div class="input-wrapper">
+                    <input 
+                      type="tel" 
+                      id="phone-number" 
+                      name="phoneNumber" 
+                      value="+998 90 123 45 67" 
+                      placeholder="+998 90 123 45 67" 
+                      required
+                    >
+                  </div>
+                </div>
+
+                <!-- Kurs Darajasini Tanlash -->
+                <div class="form-group">
+                  <label><i class="fa-solid fa-layer-group"></i> Proper Kursi Yo'nalishi</label>
+                  <div class="course-tier-select">
+                    <label class="tier-option">
+                      <input type="radio" name="courseTier" value="standart">
+                      <div class="tier-card">
+                        <span class="tier-name">STANDART</span>
+                        <span class="tier-price">$99</span>
+                        <small>Nazariya + SMC</small>
+                      </div>
+                    </label>
+
+                    <label class="tier-option">
+                      <input type="radio" name="courseTier" value="pro" checked>
+                      <div class="tier-card popular">
+                        <span class="popular-ribbon">TAVSIYA</span>
+                        <span class="tier-name">PRO PROPER</span>
+                        <span class="tier-price">$199</span>
+                        <small>Live Savdo + $10k Challenge</small>
+                      </div>
+                    </label>
+
+                    <label class="tier-option">
+                      <input type="radio" name="courseTier" value="vip">
+                      <div class="tier-card">
+                        <span class="tier-name">VIP MENTOR</span>
+                        <span class="tier-price">$399</span>
+                        <small>1-ga-1 Mentorlik</small>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Tasdiqlash kodi qismi (Foydalanuvchi talabi: boshqa kod so'raladigan qilib ber) -->
+                <div class="form-group otp-trigger-group">
+                  <label><i class="fa-solid fa-shield-halved"></i> Xavfsizlik Tasdiqlash Kodi (OTP)</label>
+                  <div class="otp-request-bar">
+                    <span class="otp-status-text" id="otp-status-label">Kodni emailga yuborish kerak</span>
+                    <button type="button" class="btn-send-code" id="btn-request-code" onclick="sendVerificationCode()">
+                      <i class="fa-solid fa-paper-plane"></i> Kodni Olish
+                    </button>
+                  </div>
+                  
+                  <div class="otp-boxes-wrapper" id="otp-boxes-container">
+                    <input type="text" maxlength="1" class="otp-digit" data-idx="0" placeholder="•">
+                    <input type="text" maxlength="1" class="otp-digit" data-idx="1" placeholder="•">
+                    <input type="text" maxlength="1" class="otp-digit" data-idx="2" placeholder="•">
+                    <input type="text" maxlength="1" class="otp-digit" data-idx="3" placeholder="•">
+                    <input type="text" maxlength="1" class="otp-digit" data-idx="4" placeholder="•">
+                    <input type="text" maxlength="1" class="otp-digit" data-idx="5" placeholder="•">
+                  </div>
+                  <small class="code-hint"><i class="fa-solid fa-circle-info"></i> Kod: <strong id="demo-code-hint">784-291</strong> (avtomatik yuborildi)</small>
+                </div>
+
+                <!-- Maxfiylik va qoidalar -->
+                <div class="checkbox-group">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" id="terms-agree" checked required>
+                    <span class="checkmark"></span>
+                    <span>Proper Kursi qoidalari va o'qish shartlariga roziman</span>
+                  </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-submit-registration" id="submit-reg-btn">
+                  <i class="fa-solid fa-circle-check"></i>
+                  <span>Ro'yxatdan O'tishni Yakunlash & Kabinetga Kirish</span>
+                </button>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 1: GOOGLE AKKAUNT BILAN KIRISH OYNASI (SIMULATION) -->
+  <!-- ======================================================== -->
+  <div class="modal-backdrop" id="google-modal">
+    <div class="modal-dialog google-modal-dialog">
+      <button class="modal-close-btn" onclick="closeGoogleModal()"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="google-modal-content">
+        <div class="g-header">
+          <svg class="g-logo-svg" viewBox="0 0 24 24" width="36" height="36">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+          <h3>Google orqali kiring</h3>
+          <p>Proper Trading Academy ilovasida davom etish</p>
+        </div>
+
+        <!-- Google Selected Account Card (abdulazizikromov897@gmail.com) -->
+        <div class="google-account-list">
+          <div class="g-account-card active" onclick="confirmGoogleAccount()">
+            <div class="g-avatar">
+              <span>AI</span>
+            </div>
+            <div class="g-acc-info">
+              <strong class="g-name">ABDULAZIZ IKROMOV</strong>
+              <span class="g-email">abdulazizikromov897@gmail.com</span>
+            </div>
+            <i class="fa-solid fa-circle-check g-check-icon"></i>
+          </div>
+
+          <div class="g-account-card g-other-acc" onclick="alert('Yangi akkaunt qo\'shish tanlandi.')">
+            <div class="g-avatar-add"><i class="fa-solid fa-user-plus"></i></div>
+            <div class="g-acc-info">
+              <span>Boshqa hisobdan foydalanish</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="g-footer">
+          <p>Davom etish orqali siz Google xizmatlarining Proper Trading bilan integratsiyasiga ruxsat berasiz.</p>
+          <div class="g-actions">
+            <button class="btn btn-g-cancel" onclick="closeGoogleModal()">Bekor qilish</button>
+            <button class="btn btn-g-confirm" onclick="confirmGoogleAccount()">
+              <i class="fa-solid fa-check"></i> Tasdiqlash & Kirish
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 2: MAXSUS VIDEO PLEER TREYLERI (EKSKLYUZIV VIDEO) -->
+  <!-- ======================================================== -->
+  <div class="modal-backdrop" id="trailer-modal">
+    <div class="modal-dialog video-modal-dialog">
+      <button class="modal-close-btn" onclick="closeTrailerModal()"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="custom-video-player-box">
+        <div class="video-player-header">
+          <div class="v-title-info">
+            <span class="live-dot"></span>
+            <h4>Proper Kursi Maxsus Treyleri & Kirish Darsi</h4>
+          </div>
+          <span class="hd-badge"><i class="fa-solid fa-gem"></i> 4K PRO VIDEO</span>
+        </div>
+
+        <!-- Custom Video Canvas / Video Area -->
+        <div class="video-viewport" id="video-viewport">
+          <!-- Real HTML5 Video with reliable high quality trading/finance motion -->
+          <video id="proper-html5-video" loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-financial-graphs-and-charts-on-a-digital-screen-41716-large.mp4" type="video/mp4">
+            Brauzeringiz videoni qo'llab-quvvatlamaydi.
+          </video>
+
+          <!-- Dynamic Canvas HUD overlay for glowing neon trading analytics inside the video -->
+          <canvas id="video-hud-canvas"></canvas>
+
+          <!-- Big Center Play Button Overlay -->
+          <div class="video-center-controls" id="center-play-overlay" onclick="togglePlayVideo()">
+            <div class="center-play-circle">
+              <i class="fa-solid fa-play" id="center-play-icon"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Controls Bar -->
+        <div class="custom-player-controls">
+          <div class="progress-bar-container" id="video-progress-container">
+            <div class="progress-bar-fill" id="video-progress-fill"></div>
+            <div class="progress-scrubber" id="video-scrubber"></div>
+          </div>
+
+          <div class="controls-row">
+            <div class="left-controls">
+              <button class="ctrl-btn" id="btn-play-pause" onclick="togglePlayVideo()" title="Play/Pause">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="ctrl-btn" onclick="skipVideo(-10)" title="10 soniya orqaga">
+                <i class="fa-solid fa-rotate-left"></i>
+              </button>
+              <button class="ctrl-btn" onclick="skipVideo(10)" title="10 soniya oldinga">
+                <i class="fa-solid fa-rotate-right"></i>
+              </button>
+              <div class="time-display">
+                <span id="video-current-time">00:00</span> / <span id="video-total-time">02:30</span>
+              </div>
+            </div>
+
+            <div class="right-controls">
+              <button class="ctrl-btn" id="btn-video-mute" onclick="toggleVideoMute()" title="Ovoz">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+              <button class="ctrl-btn" onclick="toggleFullScreen()" title="To'liq ekran">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- MODAL 3: SHAXSIY TALABA KABINETI (ICHIGA KIRGANDA)       -->
+  <!-- ======================================================== -->
+  <div class="modal-backdrop" id="dashboard-modal">
+    <div class="modal-dialog dashboard-dialog">
+      <div class="dashboard-window">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="dashboard-sidebar">
+          <div class="d-brand">
+            <i class="fa-solid fa-chart-line-up"></i>
+            <span>PROPER ACADEMY</span>
+          </div>
+
+          <div class="d-user-profile">
+            <div class="d-avatar">
+              <span>AI</span>
+              <span class="online-indicator"></span>
+            </div>
+            <div class="d-user-details">
+              <strong id="dash-user-name">ABDULAZIZ IKROMOV</strong>
+              <small id="dash-user-email">abdulazizikromov897@gmail.com</small>
+              <span class="badge-vip"><i class="fa-solid fa-crown"></i> PRO STUDENT</span>
+            </div>
+          </div>
+
+          <ul class="d-menu">
+            <li class="active"><a href="javascript:void(0)" onclick="switchDashTab('lessons')"><i class="fa-solid fa-play"></i> Video Darslar</a></li>
+            <li><a href="javascript:void(0)" onclick="switchDashTab('charts')"><i class="fa-solid fa-chart-candlestick"></i> Jonli Tahlillar</a></li>
+            <li><a href="javascript:void(0)" onclick="switchDashTab('gallery')"><i class="fa-solid fa-images"></i> Rasm & Natijalar</a></li>
+            <li><a href="javascript:void(0)" onclick="switchDashTab('certificate')"><i class="fa-solid fa-certificate"></i> Sertifikat</a></li>
+          </ul>
+
+          <div class="sidebar-footer">
+            <button class="btn btn-logout" onclick="closeDashboardModal()">
+              <i class="fa-solid fa-door-open"></i> Saytga Qaytish
+            </button>
+          </div>
+        </aside>
+
+        <!-- Main Dashboard Viewport -->
+        <div class="dashboard-main-area">
+          <header class="d-header">
+            <div class="d-title">
+              <h2>Xush Kelibsiz, <span class="gradient-text">ABDULAZIZ IKROMOV!</span></h2>
+              <p>Siz muvaffaqiyatli ro'yxatdan o'tdingiz. Barcha Proper darsliklari siz uchun ochiq.</p>
+            </div>
+            <button class="modal-close-btn" onclick="closeDashboardModal()"><i class="fa-solid fa-xmark"></i></button>
+          </header>
+
+          <!-- Tab Content 1: Video Darslar -->
+          <div class="d-tab-content active" id="tab-lessons">
+            
+            <div class="dash-video-hero">
+              <div class="main-lesson-player">
+                <div class="lesson-video-box">
+                  <video id="dash-active-video" controls loop playsinline poster="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1200&q=80">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-candlestick-chart-of-the-stock-market-41718-large.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="lesson-meta">
+                  <span class="lesson-tag"><i class="fa-solid fa-circle-play"></i> 1-Dars Mavzusi</span>
+                  <h3>Prop Firmalarning $100k Challenge Qoidalari va Hisob Ochish</h3>
+                  <p>Ushbu videoda proper savdo shartlari, kunlik maksimal drawdown (5%) va umumiy risk chegaralari ko'rsatib beriladi.</p>
+                </div>
+              </div>
+
+              <!-- Darslar ro'yxati -->
+              <div class="lessons-playlist">
+                <h4><i class="fa-solid fa-list-check"></i> Kurs Modullari (12 ta)</h4>
+                <div class="playlist-items">
+                  
+                  <div class="playlist-item active">
+                    <span class="p-num">01</span>
+                    <div class="p-info">
+                      <strong>Prop Trading Asoslari</strong>
+                      <small><i class="fa-regular fa-clock"></i> 24 daqiqa • Ko'rildi</small>
+                    </div>
+                    <span class="p-status done"><i class="fa-solid fa-circle-check"></i></span>
+                  </div>
+
+                  <div class="playlist-item">
+                    <span class="p-num">02</span>
+                    <div class="p-info">
+                      <strong>SMC Likvidlik va Order Block</strong>
+                      <small><i class="fa-regular fa-clock"></i> 38 daqiqa • Ochiq</small>
+                    </div>
+                    <span class="p-status play"><i class="fa-solid fa-play"></i></span>
+                  </div>
+
+                  <div class="playlist-item">
+                    <span class="p-num">03</span>
+                    <div class="p-info">
+                      <strong>Risk Menejment Formulalari</strong>
+                      <small><i class="fa-regular fa-clock"></i> 31 daqiqa • Ochiq</small>
+                    </div>
+                    <span class="p-status play"><i class="fa-solid fa-play"></i></span>
+                  </div>
+
+                  <div class="playlist-item">
+                    <span class="p-num">04</span>
+                    <div class="p-info">
+                      <strong>FTMO & FundedNext Strategiyalari</strong>
+                      <small><i class="fa-regular fa-clock"></i> 45 daqiqa • Ochiq</small>
+                    </div>
+                    <span class="p-status play"><i class="fa-solid fa-play"></i></span>
+                  </div>
+
+                  <div class="playlist-item">
+                    <span class="p-num">05</span>
+                    <div class="p-info">
+                      <strong>Jonli Savdo Sessiyasi (NFP)</strong>
+                      <small><i class="fa-regular fa-clock"></i> 52 daqiqa • Ochiq</small>
+                    </div>
+                    <span class="p-status play"><i class="fa-solid fa-play"></i></span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Tab Content 2: Jonli Tahlillar va Chartlar -->
+          <div class="d-tab-content" id="tab-charts">
+            <div class="charts-overview-panel">
+              <div class="chart-summary-cards">
+                <div class="c-sum-card">
+                  <span>FUNDED HISOB HOLATI</span>
+                  <h3>$100,000.00</h3>
+                  <small class="text-green">+ $8,420 Profit (8.4%)</small>
+                </div>
+                <div class="c-sum-card">
+                  <span>WIN RATE</span>
+                  <h3>78.4%</h3>
+                  <small class="text-cyan">34 Yutuqli Savdo</small>
+                </div>
+                <div class="c-sum-card">
+                  <span>MAX DRAWDOWN</span>
+                  <h3>1.8%</h3>
+                  <small class="text-green">Xavfsiz chegara (5% dan past)</small>
+                </div>
+              </div>
+
+              <div class="live-chart-wrapper">
+                <h4><i class="fa-solid fa-chart-line"></i> Jonli Texnik Tahlil (XAU/USD & EUR/USD)</h4>
+                <div class="mock-chart-visual">
+                  <div class="chart-candles">
+                    <div class="candle bull" style="height: 60px; left: 10%;"></div>
+                    <div class="candle bear" style="height: 40px; left: 20%;"></div>
+                    <div class="candle bull" style="height: 90px; left: 30%;"></div>
+                    <div class="candle bull" style="height: 120px; left: 40%;"></div>
+                    <div class="candle bear" style="height: 50px; left: 50%;"></div>
+                    <div class="candle bull" style="height: 140px; left: 60%;"></div>
+                    <div class="candle bull" style="height: 160px; left: 70%;"></div>
+                    <div class="candle bull" style="height: 190px; left: 80%;"></div>
+                  </div>
+                  <div class="support-resistance r-line" style="top: 25%;"><span>RESISTANCE: 2085.50 (TP ZONE)</span></div>
+                  <div class="support-resistance s-line" style="top: 80%;"><span>SUPPORT: 2012.30 (BUY ZONE)</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content 3: O'ziga Xos Rasmlar Galereyasi -->
+          <div class="d-tab-content" id="tab-gallery">
+            <div class="gallery-container">
+              <h3>Proper Kursi Real Rasmlari va Natijalari</h3>
+              <p>O'quvchilarimiz qo'lga kiritgan funded sertifikatlari, savdo maydonchalari va master-klasslar rasmlari:</p>
+              
+              <div class="gallery-grid">
+                <div class="gallery-card">
+                  <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=600&q=80" alt="Trading setup">
+                  <div class="g-overlay">
+                    <span>Professional Multi-Monitor Trading Setup</span>
+                  </div>
+                </div>
+                <div class="gallery-card">
+                  <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80" alt="Prop Charts">
+                  <div class="g-overlay">
+                    <span>SMC Order Block & Liquidity Tahlillari</span>
+                  </div>
+                </div>
+                <div class="gallery-card">
+                  <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=600&q=80" alt="Prop Account Payout">
+                  <div class="g-overlay">
+                    <span>$12,450 Profit Split Yechib Olish Hujjati</span>
+                  </div>
+                </div>
+                <div class="gallery-card">
+                  <img src="https://images.unsplash.com/photo-1535320903710-d993d3d77d29?auto=format&fit=crop&w=600&q=80" alt="Masterclass">
+                  <div class="g-overlay">
+                    <span>Mentorlik Darsi & Jonli Tahlil</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Content 4: Sertifikat -->
+          <div class="d-tab-content" id="tab-certificate">
+            <div class="certificate-view-box">
+              <div class="cert-gold-frame">
+                <div class="cert-inner">
+                  <div class="cert-logo">
+                    <i class="fa-solid fa-award"></i>
+                    <span>PROPER TRADING ACADEMY</span>
+                  </div>
+                  <h2>SERTIFIKAT</h2>
+                  <p class="cert-sub">Ushbu sertifikat tasdiqlaydiki,</p>
+                  <h1 class="cert-student-name">ABDULAZIZ IKROMOV</h1>
+                  <p class="cert-desc">
+                    Proper Trading Academy ning to'liq <strong>Proprietary Trading & Risk Management</strong> kursini a'lo baholarga muvaffaqiyatli tamomladi hamda $100,000 Funded Challenge litsenziyasiga ega bo'ldi.
+                  </p>
+                  <div class="cert-footer">
+                    <div>
+                      <strong>Sana:</strong>
+                      <span>2026-yil</span>
+                    </div>
+                    <div class="cert-stamp">
+                      <i class="fa-solid fa-stamp"></i>
+                      <span>TASDIQLANGAN</span>
+                    </div>
+                    <div>
+                      <strong>Bosh Mentor:</strong>
+                      <span>Proper Academy Bosh Treyderi</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast-notification" id="toast-notify">
+    <div class="toast-icon" id="toast-icon"><i class="fa-solid fa-circle-check"></i></div>
+    <div class="toast-message" id="toast-message">Muvaffaqiyatli amalga oshirildi!</div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <div class="brand-logo">
+          <i class="fa-solid fa-chart-line-up"></i>
+          <span class="brand-name">PROPER<span class="accent-text">TRADING</span></span>
+        </div>
+        <p>Professional prop trading bo'yicha O'zbekistondagi 1-raqamli ta'lim platformasi.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Bog'lanish & Ko'mak</h4>
+        <p><i class="fa-solid fa-envelope"></i> abdulazizikromov897@gmail.com</p>
+        <p><i class="fa-solid fa-user-tie"></i> Talaba: ABDULAZIZ IKROMOV</p>
+      </div>
+      <div class="footer-col">
+        <h4>Ijtimoiy Tarmoqlar</h4>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-telegram"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Proper Trading Academy. Barcha huquqlar himoyalangan.</p>
+    </div>
+  </footer>
+
+  <script src="./index.js"></script>
+</body>
+</html>
